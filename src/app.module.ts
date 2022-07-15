@@ -6,8 +6,22 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     ImdbModule,
-    ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.MONGO_URI),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    MongooseModule.forRoot(process.env.MONGO_URI, {
+      connectionFactory: (connection) => {
+        if (connection.readyState === 1) {
+          console.log('DB connected');
+        }
+
+        connection.on('disconnected', () => {
+          console.log('DB disconnected');
+        });
+
+        return connection;
+      },
+    }),
   ],
 })
 export class AppModule {}
