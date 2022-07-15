@@ -1,4 +1,9 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 
 @Controller('imdb')
-export class ImdbController {}
+export class ImdbController {
+  @Get()
+  getMovies() {
+    return 'this is the movie';
+  }
+}
