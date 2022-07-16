@@ -12,6 +12,7 @@ export class ImdbService {
   ) {}
 
   async getMovieData(title?: string, imdb_id?: string) {
+    console.log('Title: ' + title + ' IMDB ID: ' + imdb_id);
     if (!title && !imdb_id) {
       throw new NotFoundException('No title or imdb_id provided');
     }
@@ -31,14 +32,12 @@ export class ImdbService {
     const response: any = await lastValueFrom(
       this.http.get(url, { params }).pipe(map((resp) => resp.data)),
     );
-    await this.imdbModel.create({
+    return await this.imdbModel.create({
       imdb_id: response.imdbID,
       title: response.Title,
       rating: response.imdbRating,
       year: response.Year,
       details: response.Plot,
     });
-    console.log(response);
-    return response;
   }
 }
