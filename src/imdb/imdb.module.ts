@@ -4,6 +4,7 @@ import { ImdbController } from './imdb.controller';
 import { ImdbService } from './imdb.service';
 
 import { IMDBSchema } from './imdb.model';
+import { IMDBConstants } from './imdb.constants';
 
 @Module({
   imports: [
@@ -11,6 +12,6 @@ import { IMDBSchema } from './imdb.model';
     HttpModule,
   ],
   controllers: [ImdbController],
-  providers: [ImdbService],
+  providers: [ImdbService, IMDBConstants],
 })
 export class ImdbModule {}

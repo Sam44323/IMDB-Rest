@@ -3,12 +3,14 @@ import { IMDB } from './imdb.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { lastValueFrom, map } from 'rxjs';
+import { IMDBConstants } from './imdb.constants';
 
 @Injectable()
 export class ImdbService {
   constructor(
     @InjectModel('IMDB') private readonly imdbModel: Model<IMDB>,
     private readonly http: HttpService,
+    private readonly constants: IMDBConstants,
   ) {}
 
   async getMovieData(title?: string, imdb_id?: string) {
@@ -22,7 +24,7 @@ export class ImdbService {
     if (dataExists) {
       return dataExists;
     }
-    const url = `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}`;
+    const url = `${this.constants.IMDB_URI}=${process.env.OMDB_API_KEY}`;
     const params = {};
     if (title) {
       params['t'] = title;
