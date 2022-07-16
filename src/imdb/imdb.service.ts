@@ -69,15 +69,13 @@ export class ImdbService {
     };
   }
 
-  async getPopularMoviesByYearOrRating(year?: number, rating?: number) {
-    if (!year && !rating) {
+  async getPopularMoviesByYearOrRating(year?: number) {
+    if (!year) {
       throw new NotFoundException('No year or rating provided');
     }
-    const dataExists = await this.imdbModel
-      .find(year ? { year } : { rating })
-      .sort({
-        rating: -1,
-      });
+    const dataExists = await this.imdbModel.find({ year }).sort({
+      rating: -1,
+    });
 
     if (dataExists) {
       return dataExists;

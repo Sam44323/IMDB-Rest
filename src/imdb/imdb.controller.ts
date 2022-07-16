@@ -22,10 +22,7 @@ export class ImdbController {
   }
 
   @Get('/popular')
-  getPopularMovies(
-    @Query('year') year?: number,
-    @Query('rating') rating?: number,
-  ) {
-    return this.imdbService.getPopularMoviesByYearOrRating(year, rating);
+  getPopularMovies(@Query('year') year?: number) {
+    return this.imdbService.getPopularMoviesByYearOrRating(year);
   }
 }
