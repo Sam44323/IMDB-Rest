@@ -29,7 +29,8 @@
     "mongoose": "^6.4.4",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7"
+    "rxjs": "^7",
+    "uuid-apikey": "^1.5.3"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.6.0",
