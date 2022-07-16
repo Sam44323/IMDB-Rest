@@ -20,4 +20,12 @@ export class ImdbController {
   ) {
     return this.imdbService.updateMovieData(title, imdb_id, description);
   }
+
+  @Get('/popular')
+  getPopularMovies(
+    @Query('year') year?: number,
+    @Query('rating') rating?: number,
+  ) {
+    return this.imdbService.getPopularMoviesByYearOrRating(year, rating);
+  }
 }

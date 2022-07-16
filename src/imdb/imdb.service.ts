@@ -56,7 +56,6 @@ export class ImdbService {
       title ? { title } : { imdb_id },
     );
     if (dataExists) {
-      console.log(dataExists);
       dataExists.details = description;
       await this.imdbModel.updateOne(
         title ? { title } : { imdb_id },
@@ -64,6 +63,26 @@ export class ImdbService {
       );
       return dataExists;
     }
+    return {
+      message: 'No data found',
+      status: 404,
+    };
+  }
+
+  async getPopularMoviesByYearOrRating(year?: number, rating?: number) {
+    if (!year && !rating) {
+      throw new NotFoundException('No year or rating provided');
+    }
+    const dataExists = await this.imdbModel
+      .find(year ? { year } : { rating })
+      .sort({
+        rating: -1,
+      });
+
+    if (dataExists) {
+      return dataExists;
+    }
+
     return {
       message: 'No data found',
       status: 404,
