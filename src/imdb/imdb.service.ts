@@ -40,4 +40,33 @@ export class ImdbService {
       details: response.Plot,
     });
   }
+
+  async updateMovieData(
+    title?: string,
+    imdb_id?: string,
+    description?: string,
+  ) {
+    console.log('Title: ' + title + ' IMDB ID: ' + imdb_id);
+    if ((!title && !imdb_id) || !description) {
+      throw new NotFoundException(
+        'No title or imdb_id or description provided',
+      );
+    }
+    const dataExists = await this.imdbModel.findOne(
+      title ? { title } : { imdb_id },
+    );
+    if (dataExists) {
+      console.log(dataExists);
+      dataExists.details = description;
+      await this.imdbModel.updateOne(
+        title ? { title } : { imdb_id },
+        dataExists,
+      );
+      return dataExists;
+    }
+    return {
+      message: 'No data found',
+      status: 404,
+    };
+  }
 }
