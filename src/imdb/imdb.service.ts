@@ -14,7 +14,6 @@ export class ImdbService {
   ) {}
 
   async getMovieData(title?: string, imdb_id?: string) {
-    console.log('Title: ' + title + ' IMDB ID: ' + imdb_id);
     if (!title && !imdb_id) {
       throw new NotFoundException('No title or imdb_id provided');
     }
