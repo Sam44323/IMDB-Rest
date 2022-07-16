@@ -2,7 +2,7 @@
   "name": "octa-imdb_api",
   "version": "0.0.1",
   "author": "Sam44323",
-  "description": "IMDB-DB Rest API",
+  "description": "IMDB-Rest API",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
