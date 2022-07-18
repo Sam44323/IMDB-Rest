@@ -64,7 +64,7 @@ yarn start:dev
 
 GET
 
-- \_/imdb?title=[movie-title] - returns the movie details
+- /imdb?title=[movie-title] - returns the movie details
 
   - Require the movie-title
   - Requires a valid api-key for the user in the header
