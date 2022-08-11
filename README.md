@@ -1,4 +1,4 @@
-# IMDB-API for REST
+# IMDB-API FOR REST
 
 ![Nest-JS](https://img.shields.io/badge/-NestJS-333333?style=for-the-badge&logo=nestjs&logoColor=61dbfb)
 ![Yarn](https://img.shields.io/badge/-Yarn-333333?style=for-the-badge&logo=yarn&logoColor=61dbfb)
